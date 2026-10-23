@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Operation Risk </title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:20px;
+    background:#f4f6f9;
+}
+
+h1{
+    text-align:center;
+    color:#003366;
+}
+
+.form-container{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+    box-shadow:0 2px 5px rgba(0,0,0,.15);
+}
+
+label{
+    display:block;
+    margin-top:8px;
+    font-weight:bold;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:8px;
+    margin-top:3px;
+    border:1px solid #ccc;
+    border-radius:4px;
+    box-sizing:border-box;
+}
+
+button{
+    padding:8px 15px;
+    margin:3px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+.add-btn{
+    background:#28a745;
+    color:white;
+}
+
+.export-btn{
+    background:#007bff;
+    color:white;
+}
+
+.edit-btn{
+    background:#ffc107;
+    color:black;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    border-collapse:collapse;
+    width:100%;
+    background:white;
+}
+
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:left;
+    min-width:160px;
+}
+
+th{
+    background:#003366;
+    color:white;
+    position:sticky;
+    top:0;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+td[contenteditable="true"]{
+    background:#fffde7;
+}
+
+.actions{
+    white-space:nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<h1> Operation Risk </h1>
+
+<div class="form-container">
+
+<label>1. Risk Event No.</label>
+<input id="f1">
+
+<label>2. Function / Dept</label>
+<input id="f2">
+
+<label>3. Process Name / Risk Title</label>
+<input id="f3">
+
+<label>4. Risk Description</label>
+<textarea id="f4"></textarea>
+
+<label>5. Causes of Operational Risk</label>
+<textarea id="f5"></textarea>
+
+<label>6. Events of Operational Risk</label>
+<select id="f6">
+    <option value="">-- Select Event of Operational Risk --</option>
+
+    <option value="Agency Fraud">Agency Fraud</option>
+    <option value="System failure">System failure</option>
+    <option value="Damage to system/assets">Damage to system/assets</option>
+    <option value="Absence of system">Absence of system</option>
+    <option value="Cyber attack">Cyber attack</option>
+    <option value="Data not stored">Data not stored</option>
+    <option value="Unauthorised/illegal access of data">Unauthorised/illegal access of data</option>
+    <option value="Unauthorised/illegal storage of data">Unauthorised/illegal storage of data</option>
+    <option value="System not adequate to give desired result">System not adequate to give desired result</option>
+    <option value="Lack of control over the system">Lack of control over the system</option>
+
+    <option value="Natural disaster">Natural disaster</option>
+    <option value="Political unrest">Political unrest</option>
+    <option value="War">War</option>
+    <option value="Riots">Riots</option>
+
+    <option value="New regulation/change of law">New regulation/change of law</option>
+    <option value="Contradiction of laws">Contradiction of laws</option>
+
+    <option value="Product/service offered by the Company has inherent defect">
+        Product/service offered by the Company has inherent defect
+    </option>
+
+    <option value="Product/service offered by the Company is unfair to the customers">
+        Product/service offered by the Company is unfair to the customers
+    </option>
+
+    <option value="Absence of process">Absence of process</option>
+    <option value="Process not adequate to give desired result">
+        Process not adequate to give desired result
+    </option>
+
+    <option value="Process not documented leading to different understanding">
+        Process not documented leading to different understanding
+    </option>
+
+    <option value="Process is unfair">Process is unfair</option>
+
+    <option value="Violating safety standards in the workplace">
+        Violating safety standards in the workplace
+    </option>
+
+    <option value="Process is illegal/violative of law">
+        Process is illegal/violative of law
+    </option>
+
+    <option value="Lack of control over the processes">
+        Lack of control over the processes
+    </option>
+
+    <option value="None">None</option>
+
+    <option value="Manpower not trained">
+        Manpower not trained
+    </option>
+
+    <option value="Lack of required manpower">
+        Lack of required manpower
+    </option>
+
+    <option value="Error in data">
+        Error in data
+    </option>
+
+    <option value="Employee Fraud">
+        Employee Fraud
+    </option>
+</select>
+
+<label>7. Description of Mitigator in Place</label>
+<textarea id="f7"></textarea>
+
+<label>8. Impact</label>
+<select id="f8">
+    <option value="">-- Select Impact --</option>
+    <option value="Low">Low</option>
+    <option value="Minor">Minor</option>
+    <option value="Moderate">Moderate</option>
+    <option value="Major">Major</option>
+    <option value="Serious">Serious</option>
+</select>
+
+<label>9. Impact Explanation</label>
+<select id="f9">
+    <option value="">-- Select Impact Explanation --</option>
+    <option value="Financial Loss">Financial Loss</option>
+    <option value="Compliance">Compliance</option>
+    <option value="Reputational Loss">Reputational Loss</option>
+    <option value="Impact on Operations">Impact on Operations</option>
+</select>
+
+
+<label>10. Likelihood</label>
+<select id="f10">
+    <option value="">-- Select Likelihood --</option>
+    <option value="More often than once a month">More often than once a month</option>
+    <option value="Once per month">Once per month</option>
+    <option value="4-times per year">4-times per year</option>
+    <option value="2-times per year">2-times per year</option>
+    <option value="Once a year">Once a year</option>
+    <option value="Once per two years">Once per two years</option>
+    <option value="Once in 5 years">Once in 5 years</option>
+    <option value="Once in 10 years">Once in 10 years</option>
+    <option value="Less frequent than once per 10 years">Less frequent than once per 10 years</option>
+</select>
+
+<label>11. Current Net Risk Rating (After Mitigation)</label>
+<input id="f11">
+
+<label>12. Risk Mitigation Strategy</label>
+<select id="f12">
+    <option value="">-- Select Risk Mitigation Strategy --</option>
+    <option value="Mitigate">Mitigate</option>
+    <option value="Transfer">Transfer</option>
+    <option value="Avoid">Avoid</option>
+    <option value="Accept">Accept</option>
+</select>
+
+<label>13. Accepted By</label>
+<select id="f13">
+    <option value="">-- Select Accepted By --</option>
+    <option value="Function Head -1">Function Head -1</option>
+    <option value="Function Head">Function Head</option>
+    <option value="CEO">CEO</option>
+    <option value="RMC + CEO + Group Function Head">RMC + CEO + Group Function Head</option>
+    <option value="Board + Group CEO">Board + Group CEO</option>
+</select>
+
+<label>14. Proposed Action Plan</label>
+<textarea id="f14"></textarea>
+
+<label>15. Target Risk Mitigation</label>
+<input id="f15">
+
+<label>16. Owner - Responsible Person</label>
+<input id="f16">
+
+<button class="add-btn" onclick="addRisk()">Add Risk</button>
+<button class="export-btn" onclick="exportCSV()">Export CSV</button>
+
+</div>
+
+<div class="table-container">
+
+<table id="riskTable">
+
+<thead>
+<tr>
+<th>Risk Event No.</th>
+<th>Function / Dept</th>
+<th>Process Name / Risk Title</th>
+<th>Risk Description</th>
+<th>Causes of Operational Risk</th>
+<th>Events of Operational Risk</th>
+<th>Description of Mitigator in Place</th>
+<th>Impact</th>
+<th>Impact Explanation</th>
+<th>Likelihood</th>
+<th>Current Net Risk Rating</th>
+<th>Risk Mitigation Strategy</th>
+<th>Accepted By</th>
+<th>Proposed Action Plan</th>
+<th>Target Risk Mitigation</th>
+<th>Owner - Responsible Person</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+let editingRow = null;
+
+window.onload = function(){
+    loadData();
+};
+
+function addRisk(){
+
+    let values=[];
+
+    for(let i=1;i<=16;i++){
+        values.push(document.getElementById("f"+i).value);
+    }
+
+    if(values[0].trim()===""){
+        alert("Risk Event No. is required");
+        return;
+    }
+
+    if(editingRow){
+
+        for(let i=0;i<16;i++){
+            editingRow.cells[i].innerText = values[i];
+        }
+
+        editingRow = null;
+
+        document.querySelector(".add-btn").innerText =
+        "Add Risk";
+
+        saveData();
+        clearForm();
+        return;
+    }
+
+    let tbody =
+    document.querySelector("#riskTable tbody");
+
+    let row =
+    tbody.insertRow();
+
+    for(let i=0;i<16;i++){
+
+        let cell =
+        row.insertCell();
+
+        cell.contentEditable = true;
+        cell.innerText = values[i];
+
+        cell.addEventListener(
+            "input",
+            saveData
+        );
+    }
+
+    let actionCell =
+    row.insertCell();
+
+    actionCell.className="actions";
+
+    actionCell.innerHTML=
+    `<button class="edit-btn" onclick="editRow(this)">Edit</button>
+     <button class="delete-btn" onclick="deleteRow(this)">Delete</button>`;
+
+    enableRowDoubleClick(row);
+
+    saveData();
+    clearForm();
+}
+
+function editRow(btn){
+
+    editingRow =
+    btn.parentElement.parentElement;
+
+    for(let i=0;i<16;i++){
+        document.getElementById("f"+(i+1)).value =
+        editingRow.cells[i].innerText;
+    }
+
+    document.querySelector(".add-btn").innerText =
+    "Update Risk";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+function deleteRow(btn){
+
+    if(confirm("Delete this risk?")){
+
+        btn.parentElement.parentElement.remove();
+
+        saveData();
+    }
+}
+
+function saveData(){
+
+    let tableData=[];
+
+    let rows=
+    document.querySelectorAll(
+    "#riskTable tbody tr"
+    );
+
+    rows.forEach(row=>{
+
+        let rowData=[];
+
+        for(let i=0;i<16;i++){
+
+            rowData.push(
+            row.cells[i].innerText
+            );
+        }
+
+        tableData.push(rowData);
+
+    });
+
+    localStorage.setItem(
+    "riskRegisterData",
+    JSON.stringify(tableData)
+    );
+}
+
+function loadData(){
+
+    let data =
+    JSON.parse(
+    localStorage.getItem(
+    "riskRegisterData"
+    )) || [];
+
+    let tbody =
+    document.querySelector(
+    "#riskTable tbody"
+    );
+
+    data.forEach(record=>{
+
+        let row=
+        tbody.insertRow();
+
+        record.forEach(value=>{
+
+            let cell=
+            row.insertCell();
+
+            cell.contentEditable=true;
+
+            cell.innerText=value;
+
+            cell.addEventListener(
+                "input",
+                saveData
+            );
+        });
+
+        let actionCell=
+        row.insertCell();
+
+        actionCell.className="actions";
+
+        actionCell.innerHTML=
+        `<button class="edit-btn" onclick="editRow(this)">Edit</button>
+        <button class="delete-btn" onclick="deleteRow(this)">Delete</button>`;
+
+        enableRowDoubleClick(row);
+
+    });
+}
+
+function clearForm(){
+
+    for(let i=1;i<=16;i++){
+        document.getElementById("f"+i).value="";
+    }
+}
+
+function enableRowDoubleClick(row){
+
+    row.addEventListener("dblclick",function(){
+
+        editingRow=row;
+
+        for(let i=0;i<16;i++){
+            document.getElementById("f"+(i+1)).value =
+            row.cells[i].innerText;
+        }
+
+        document.querySelector(".add-btn").innerText =
+        "Update Risk";
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    });
+}
+
+function exportCSV(){
+
+    let csv=[];
+
+    let rows =
+    document.querySelectorAll(
+    "table tr"
+    );
+
+    rows.forEach(row=>{
+
+        let cols=
+        row.querySelectorAll(
+        "th,td"
+        );
+
+        let rowData=[];
+
+        cols.forEach((col,index)=>{
+
+            if(index<16){
+
+                rowData.push(
+                '"' +
+                col.innerText.replace(/"/g,'""') +
+                '"'
+                );
+            }
+        });
+
+        csv.push(
+        rowData.join(",")
+        );
+    });
+
+    let csvFile =
+    new Blob(
+    [csv.join("\n")],
+    {
+        type:"text/csv"
+    });
+
+    let link =
+    document.createElement("a");
+
+    link.download =
+    "Risk_Register.csv";
+
+    link.href =
+    URL.createObjectURL(csvFile);
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+}
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    const fields=[];
+
+    for(let i=1;i<=16;i++){
+        fields.push(
+        document.getElementById(
+        "f"+i
+        ));
+    }
+
+    fields.forEach(
+    (field,index)=>{
+
+        field.addEventListener(
+        "keydown",
+        function(e){
+
+            if(e.key==="Enter"){
+
+                e.preventDefault();
+
+                if(
+                index <
+                fields.length-1
+                ){
+                    fields[index+1]
+                    .focus();
+                }
+                else{
+                    addRisk();
+                }
+            }
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>
